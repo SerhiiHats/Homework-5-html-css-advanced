@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>task3</title>
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+   <div class="container">
+      <header>
+         <p>Завдання 3</p>
+         <p>Використовуючи цикл, намалюйте на конвасі наступну фігуру:</p>
+         <img class="task" src="img/image.png" alt="task">
+      </header>
+      <main>
+         <canvas id="canvas" height="500" width="500"></canvas>
+      </main>
+      <nav>
+         <label for="paint">Ширина холста:</label>
+         <input type="number" name="width-paint" id="paint" placeholder="Введите значение..." required max="1000">
+         <label for="step">Oтступ между линиями:</label>
+         <input type="number" name="step-line" id="step" placeholder="Введите значение..." required max="1000">
+         <button id="go">нарисовать</button>
+      </nav>
+   </div>
+
+
+   <script>
+      function createLattice(widthPainting, step, elementCanvas) {
+         let canvas = document.querySelector(elementCanvas);
+         canvas.height = widthPainting;
+         canvas.width = widthPainting;
+         let context = canvas.getContext("2d");
+         context.clearRect(0, 0, 500, 500);
+         let keyOut = 0
+         while (keyOut < 2) {
+            for (let i = step; i < widthPainting; i += step) {
+               if (keyOut) {
+                  context.beginPath();
+                  context.moveTo(i, 0);
+                  context.lineTo(i, widthPainting);
+                  context.stroke();
+                  context.closePath();
+               } else {
+                  context.beginPath();
+                  context.moveTo(0, i);
+                  context.lineTo(widthPainting, i);
+                  context.stroke();
+                  context.closePath();
+               }
+            }
+            keyOut++;
+         }
+      }
+
+
+
+      document.querySelector("#go").onclick = () => {
+         let value1 = document.querySelector("#paint");
+         let value2 = document.querySelector("#step");
+         function validityInput() {
+            return value1.validity.valid && value2.validity.valid;
+         }
+
+         if (!validityInput()) {
+            return;
+         }
+
+         let widthPainting = Number(value1.value);
+         let step = Number(value2.value);
+         createLattice(widthPainting, step, "#canvas");
+      }
+
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+.container {
+   display: grid;
+   grid-template-columns: 1fr 1280px 1fr;
+}
+
+p {
+   font-size: 20px;
+   font-weight: bold;
+}
+
+header p:first-child {
+   color: green;
+   font-size: 24px;
+}
+
+main {
+   height: 900px;
+   grid-column: 2;
+   border: 1px solid tomato;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-content: flex-start;
+}
+
+nav {
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: 20px 50px 20px 50px 50px;
+   gap: 10px;
+}
+
+img {
+   margin: 10px;
+}
+
+.task {
+   width: 100%;
+}
+
+input {
+   font-size: 20px;
+}
+
+input:placeholder-shown {
+   font-size: 14px;
+}
+
+input:valid {
+   border: 1px solid green;
+}
+
+input:invalid {
+   border: 1px solid red;
+}
+
+label {
+   font-size: 20px;
+   font-weight: bold;
+   color: green;
+}
