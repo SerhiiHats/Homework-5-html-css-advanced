@@ -22,20 +22,36 @@
       </main>
       <nav>
          <label for="paint">Ширина холста:</label>
-         <input type="number" name="width-paint" id="paint" placeholder="Введите значение..." required max="1000">
+         <input type="number" name="width-paint" id="paint" value="550" placeholder="Введите значение..." required max="1000">
          <label for="step">Oтступ между линиями:</label>
-         <input type="number" name="step-line" id="step" placeholder="Введите значение..." required max="1000">
+         <input type="number" name="step-line" id="step" value="50" placeholder="Введите значение..." required max="1000">
+         <label for="wide">ширина линии, px:</label>
+         <input type="number" name="width-line" id="wide" value="3" placeholder="Введите значение..." required max="100">
+         <label for="rainbow">цвет линии:</label>
+         <select name="color-line" id="rainbow">
+            <option value="black" style="background-color: black; color: white" selected>black</option>
+            <option value="red" style="background-color: red; color: white">red</option>
+            <option value="orange" style="background-color: orange; color: white">orange</option>
+            <option value="yellow" style="background-color: yellow;color: black">yellow</option>
+            <option value="green" style="background-color: green;color: white">green</option>
+            <option value="blue" style="background-color: blue;color: white">blue</option>
+            <option value="lightblue" style="background-color: lightblue;color: black">lightblue</option>
+            <option value="purple" style="background-color: purple; color: white">purple</option>
+         </select>
+         <!-- <input type="color" name="color-line" id="rainbow"> -->
          <button id="go">нарисовать</button>
       </nav>
    </div>
 
 
    <script>
-      function createLattice(widthPainting, step, elementCanvas) {
+      function createLattice(widthPainting, step, wide, lineColor, elementCanvas) {
          let canvas = document.querySelector(elementCanvas);
          canvas.height = widthPainting;
          canvas.width = widthPainting;
          let context = canvas.getContext("2d");
+         context.strokeStyle = lineColor;
+         context.lineWidth = wide;
          context.clearRect(0, 0, 500, 500);
          let keyOut = 0
          while (keyOut < 2) {
@@ -63,8 +79,11 @@
       document.querySelector("#go").onclick = () => {
          let value1 = document.querySelector("#paint");
          let value2 = document.querySelector("#step");
+         let value3 = document.querySelector("#wide");
+         let lineColor = document.querySelector("#rainbow");
+
          function validityInput() {
-            return value1.validity.valid && value2.validity.valid;
+            return value1.validity.valid && value2.validity.valid && value3.validity.valid;
          }
 
          if (!validityInput()) {
@@ -73,7 +92,8 @@
 
          let widthPainting = Number(value1.value);
          let step = Number(value2.value);
-         createLattice(widthPainting, step, "#canvas");
+         let wide = Number(value3.value);
+         createLattice(widthPainting, step, wide, lineColor.value, "#canvas");
       }
 
    </script>
