@@ -29,40 +29,58 @@
       ctx.fillStyle = "white";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Рисуем красную полосу
+      // Рисуем красные полосы
       ctx.fillStyle = "#c8102e";
       ctx.fillRect(0, 0, canvas.width / 4, canvas.height);
       ctx.fillRect(canvas.width / 4 * 3, 0, canvas.width, canvas.height);
 
+      //----Рисуем лист клена-----
+      // сохраняем состояние координат
+      ctx.save();
 
-      //---------
-      // Нарисовать лист клена
-      // const leafColor = '#c8102e'; // Цвет листа
-      ctx.fillStyle = '#c8102e';
+      // смещаем холст в координаты
+      ctx.translate(200, 20);
+
+      // Приступаем Нарисовать лист клена
+      ctx.fillStyle = '#c8102e'; // Цвет заливки
       ctx.beginPath();
-      ctx.moveTo(100, 100);
-      ctx.bezierCurveTo(70, 60, 40, 80, 50, 110);
-      ctx.bezierCurveTo(30, 140, 60, 170, 100, 150);
-      ctx.bezierCurveTo(140, 170, 170, 140, 150, 110);
-      ctx.bezierCurveTo(170, 80, 140, 60, 100, 100);
+
+      // Рисуем правую часть листа клена
+      ctx.moveTo(0, 0);
+      ctx.lineTo(13, 25);
+      ctx.lineTo(26, 21);
+      ctx.lineTo(15, 73);
+      ctx.lineTo(41, 44);
+      ctx.lineTo(45, 57);
+      ctx.lineTo(73, 57);
+      ctx.lineTo(63, 79);
+      ctx.lineTo(75, 86);
+      ctx.lineTo(33, 107);
+      ctx.lineTo(38, 121);
+      ctx.lineTo(2, 118);
+      ctx.lineTo(5, 157);
+
+      // Рисуем левую часть листа клена
+      ctx.lineTo(-6, 159)
+      ctx.lineTo(-2, 118);
+      ctx.lineTo(-38, 121);
+      ctx.lineTo(-33, 107);
+      ctx.lineTo(-75, 86);
+      ctx.lineTo(-63, 79);
+      ctx.lineTo(-73, 57);
+      ctx.lineTo(-45, 57);
+      ctx.lineTo(-41, 44);
+      ctx.lineTo(-15, 73);
+      ctx.lineTo(-26, 21);
+      ctx.lineTo(-13, 25);
+
+      // закрываем путь и заливаем цветом
       ctx.closePath();
       ctx.fill();
-
-      // Нарисовать стебель
-      ctx.fillStyle = '#228B22'; // Цвет стебля
-      ctx.fillRect(97, 100, 6, 100);
-
-      // Нарисовать контур листа
-      ctx.strokeStyle = '#000000'; // Цвет контура
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(100, 100);
-      ctx.bezierCurveTo(70, 60, 40, 80, 50, 110);
-      ctx.bezierCurveTo(30, 140, 60, 170, 100, 150);
-      ctx.bezierCurveTo(140, 170, 170, 140, 150, 110);
-      ctx.bezierCurveTo(170, 80, 140, 60, 100, 100);
-      ctx.closePath();
       ctx.stroke();
+
+      // востанавливаем координаты холста
+      ctx.restore();
 
    </script>
 </body>
